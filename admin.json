@@ -1,6 +1,6 @@
 {
 	"application": {
-		"title": "RioBus",
+		"title": "uPlay",
 
 		"theme": "bootswatch-paper",
 
@@ -9,24 +9,49 @@
 		"send_verification_email": false,
 
 		"collections": [
-			{
-				"name": "itinerary"
-			}
+			{ "name": "feeds" },
+			{ "name": "playlists" }
 		],
 
 		"queries": [
 			{
-				"name": "admin_itineraries",
-				"collection": "itinerary",
+				"name": "admin_feeds",
+				"collection": "feeds",
 				"filter": {},
 				"options": {
-					"sort": { "description": 1 }
-				}
+                    "sort": { "created_time": -1 },
+                    "fields": {
+                        "item_id": 1,
+                        "title": 1,
+                        "created_time": 1,
+                        "publish_start": 1,
+                        "publish_end": 1
+                    }
+                }
 			},
 			{
-				"name": "admin_itinerary",
-				"collection": "itinerary",
-				"filter": { "line": ":line" },
+				"name": "admin_feed",
+				"collection": "feeds",
+				"filter": { "item_id": ":item_id" },
+				"find_one": true
+			},
+			{
+				"name": "admin_playlists",
+				"collection": "playlists",
+				"filter": {},
+				"options": {
+                    "sort": { "created_time": -1 },
+                    "fields": {
+                        "playlist_id": 1,
+                        "title": 1,
+                        "created_time": 1
+                    }
+                }
+			},
+			{
+				"name": "admin_playlist",
+				"collection": "playlists",
+				"filter": { "playlist_id": ":playlist_id" },
 				"find_one": true
 			},
 			{
@@ -66,62 +91,152 @@
 
 		"private_zone": {
 			"pages": [
+                {
+                    "name": "home_private",
+					"title": "Administração",
+					"roles": ["user","admin"]
+                },
 				{
-					"name": "home_private",
-					"title": "Itinerários",
+					"name": "publications",
+					"title": "Publicações",
 					"roles": ["admin"],
 					"components": [
 						{
 							"name": "view",
 							"type": "data_view",
-							"text_if_empty": "Ainda não há itinerários salvos.",
-							"query_name": "admin_itineraries",
+							"text_if_empty": "Ainda não há publicações salvas.",
+							"query_name": "admin_feeds",
 							"query_params": [],
 
 							"fields": [
-								{ "name": "line", "title": "Linha"},
-								{ "name": "description", "title": "Descrição" },
-								{ "name": "agency", "title": "Agência" }
-							],
+								{ "name": "title", "title": "Título" },
+								{ "name": "created_time", "title": "Data de criação" },
+								{ "name": "publish_start", "title": "Início da publicação" },
+								{ "name": "publish_end", "title": "Fim da publicação" }
 
-							"edit_route": "itineraries.edit",
+							],
+							"edit_route": "feeds.edit",
 							"edit_route_params": [
-								{ "name": "line", "value": "this.line" }
+								{ "name": "item_id", "value": "this.item_id" }
 							]
 						}
 					]
 				},
-				
 				{
-					"name": "itineraries",
+					"name": "feeds",
 					"roles": ["admin"],
 					"pages": [
 						{
 							"name": "edit",
-							"route_params": ["line"],
+							"route_params": ["item_id"],
 							"components": [
 								{
 									"name": "edit_form",
 									"type": "form",
 									"mode": "update",
-									"title": "Editar Itinerário",
-									"submit_route": "home_private",
-									"cancel_route": "home_private",
-									"query_name": "admin_itinerary",
+									"title": "Editar Publicação",
+									"submit_route": "publications",
+									"cancel_route": "publications",
+									"query_name": "admin_feed",
 									"query_params": [],
 									"fields": [
-										{ "name": "line", "title": "Linha", "type": "string", "required": true },
-										{ "name": "description", "title": "Descrição", "type": "string", "required": true },
-										{ "name": "agency", "title": "Agência", "type": "string", "required": true },
-										{ "name": "keywords", "title": "Palavras-chave", "type": "string", "required": true }
+                                        { "name": "username", "title": "Usuário", "type": "string", "required": true },
+                                        { "name": "screenname", "title": "Screen Name", "type": "string", "required": true },
+                                        { "name": "item_id", "title": "ID do item", "type": "string", "required": true },
+                                        { "name": "title", "title": "Título", "type": "string", "required": true },
+                                        { "name": "created_time", "title": "Data de criação", "type": "date", "input": "datepicker", "required": true },
+                                        { "name": "publish_start", "title": "Início da publicação", "type": "date", "input": "datepicker", "required": true },
+                                        { "name": "publish_end", "title": "Fim da publicação", "type": "date", "input": "datepicker", "required": true },
+                                        { "name": "tiny_url", "title": "URL curta", "type": "string", "required": true },
+                                        { "name": "deion", "title": "Deion", "type": "string", "required": true },
+                                        { "name": "tags", "title": "Tags", "type": "array", "array_item_type": "string", "required": true },
+                                        { "name": "owner", "title": "Proprietário", "type": "string", "required": true },
+                                        { "name": "thumbnail", "title": "Minatura", "type": "string", "required": true },
+										{ "name": "source", "title": "Fonte", "type": "string", "required": true },
+										{ "name": "keywords", "title": "Palavras-chave", "type": "string", "required": true },
+										{ "name": "media_type", "title": "Tipo de arquivo", "type": "string", "required": true },
+										{ "name": "is_teaser", "title": "É teaser", "type": "bool", "required": true },
+                                        { "name": "playlists_id", "title": "IDs das playlists", "type": "array", "array_item_type": "string", "required": true },
+										{ "name": "priority", "title": "Prioridade", "type": "integer", "min": 0, "default": 999, "required": true },
+										{ "name": "is_active", "title": "Ativo", "type": "bool", "required": true }
 									]
 								}
 							]
 						}
 					]
 				},
+				{
+					"name": "playlists",
+					"title": "Listas de Reprodução",
+					"roles": ["admin"],
+					"components": [
+						{
+							"name": "view",
+							"type": "data_view",
+							"text_if_empty": "Ainda não há listas salvas.",
+							"query_name": "admin_playlists",
+							"query_params": [],
 
-
+							"fields": [
+								{ "name": "title", "title": "Título" },
+								{ "name": "created_time", "title": "Data de criação" },
+								{ "name": "publish_start", "title": "Início da publicação" },
+								{ "name": "publish_end", "title": "Fim da publicação" }
+							],
+							"edit_route": "playlist.edit",
+							"edit_route_params": [
+								{ "name": "playlist_id", "value": "this.playlist_id" }
+							]
+						}
+					]
+				},
+				{
+					"name": "playlist",
+					"roles": ["admin"],
+					"pages": [
+						{
+							"name": "edit",
+							"route_params": ["item_id"],
+							"components": [
+								{
+									"name": "edit_form",
+									"type": "form",
+									"mode": "update",
+									"title": "Editar Lista de Reprodução",
+									"submit_route": "playlists",
+									"cancel_route": "playlists",
+									"query_name": "admin_playlist",
+									"query_params": [],
+									"fields": [
+                                        { "name": "playlist_id", "title": "ID da Playlist", "type": "string", "required": true },
+                                        { "name": "created_time", "title": "Data de criação", "type": "date", "input": "datepicker", "required": true },
+                                        { "name": "publish_start", "title": "Início da publicação", "type": "date", "input": "datepicker", "required": true },
+                                        { "name": "publish_end", "title": "Fim da publicação", "type": "date", "input": "datepicker", "required": true },
+                                        { "name": "deion", "title": "Deion", "type": "string", "required": true },
+                                        { "name": "title", "title": "Título", "type": "string", "required": true },
+                                        { "name": "owner", "title": "Proprietário", "type": "string", "required": true },
+                                        { "name": "username", "title": "Usuário", "type": "string", "required": true },
+                                        { "name": "screenname", "title": "Screen Name", "type": "string", "required": true },
+                                        { "name": "thumbnail", "title": "Minatura", "type": "string", "required": true },
+                                        { "name": "videos_id", "title": "Vídeos", "type": "array", "array_item_type": "string", "required": true },
+										{ "name": "keywords", "title": "Palavras-chave", "type": "string", "required": true },
+										{ "name": "is_active", "title": "Ativo", "type": "bool", "required": true }
+									]
+								}
+							]
+						}
+					]
+				},
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
 				{
 					"name": "admin",
 					"roles": ["admin"],
@@ -299,7 +414,8 @@
 					"class": "nav navbar-nav",
 					"dest_selector": "#menu",
 					"items": [
-						{ "title": "Itinerários", "route": "home_private" }
+						{ "title": "Publicações", "route": "publications" },
+						{ "title": "Playlists", "route": "playlists" }
 					]
 				},
 				{

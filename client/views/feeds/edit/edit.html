@@ -1,0 +1,313 @@
+<template name="FeedsEdit">
+	<div class="page-container container" id="content">
+		<div class="row" id="title_row">
+			<div class="col-md-12">
+				<div id="page_menu" class="pull-right">
+				</div>
+			</div>
+		</div>
+		{{> FeedsEditEditForm}}
+	</div>
+</template>
+
+<template name="FeedsEditEditForm">
+	<div id="feeds-edit-edit-form" class="">
+		<h2 id="component-title">
+			Editar Publicação
+		</h2>
+		<form role="form">
+			{{#if errorMessage}}
+			<div class="alert alert-warning">
+				{{errorMessage}}
+			</div>
+			{{/if}}		
+		
+			{{#if infoMessage}}
+			<div class="alert alert-success">
+				{{infoMessage}}
+			</div>
+			{{/if}}
+			<div class="form-group  field-username">
+				<label for="username">
+					Usuário
+				</label>
+				<div class="input-div">
+					<input type="text" name="username" value="{{admin_feed.username}}" class="form-control" autofocus="autofocus" required="required" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-screenname">
+				<label for="screenname">
+					Screen Name
+				</label>
+				<div class="input-div">
+					<input type="text" name="screenname" value="{{admin_feed.screenname}}" class="form-control" required="required" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-item_id">
+				<label for="item_id">
+					ID do item
+				</label>
+				<div class="input-div">
+					<input type="text" name="item_id" value="{{admin_feed.item_id}}" class="form-control" required="required" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-title">
+				<label for="title">
+					Título
+				</label>
+				<div class="input-div">
+					<input type="text" name="title" value="{{admin_feed.title}}" class="form-control" required="required" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-created_time">
+				<label for="created_time">
+					Data de criação
+				</label>
+				<div class="input-div">
+					<div class="input-group date">
+						<input type="text" name="created_time" value="{{formatDate admin_feed.created_time ''}}" class="form-control" required="required" data-type="date">
+						<span class="input-group-addon">
+							<i class="fa fa-calendar">
+							</i>
+						</span>
+					</div>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-publish_start">
+				<label for="publish_start">
+					Início da publicação
+				</label>
+				<div class="input-div">
+					<div class="input-group date">
+						<input type="text" name="publish_start" value="{{formatDate admin_feed.publish_start ''}}" class="form-control" required="required" data-type="date">
+						<span class="input-group-addon">
+							<i class="fa fa-calendar">
+							</i>
+						</span>
+					</div>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-publish_end">
+				<label for="publish_end">
+					Fim da publicação
+				</label>
+				<div class="input-div">
+					<div class="input-group date">
+						<input type="text" name="publish_end" value="{{formatDate admin_feed.publish_end ''}}" class="form-control" required="required" data-type="date">
+						<span class="input-group-addon">
+							<i class="fa fa-calendar">
+							</i>
+						</span>
+					</div>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-tiny_url">
+				<label for="tiny_url">
+					URL curta
+				</label>
+				<div class="input-div">
+					<input type="text" name="tiny_url" value="{{admin_feed.tiny_url}}" class="form-control" required="required" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-deion">
+				<label for="deion">
+					Deion
+				</label>
+				<div class="input-div">
+					<input type="text" name="deion" value="{{admin_feed.deion}}" class="form-control" required="required" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-tags">
+				<label for="tags">
+					Tags
+				</label>
+				<div class="input-div">
+					<input type="text" name="tags" value="{{admin_feed.tags}}" class="form-control" required="required" data-type="array">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-owner">
+				<label for="owner">
+					Proprietário
+				</label>
+				<div class="input-div">
+					<input type="text" name="owner" value="{{admin_feed.owner}}" class="form-control" required="required" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-thumbnail">
+				<label for="thumbnail">
+					Minatura
+				</label>
+				<div class="input-div">
+					<input type="text" name="thumbnail" value="{{admin_feed.thumbnail}}" class="form-control" required="required" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-source">
+				<label for="source">
+					Fonte
+				</label>
+				<div class="input-div">
+					<input type="text" name="source" value="{{admin_feed.source}}" class="form-control" required="required" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-keywords">
+				<label for="keywords">
+					Palavras-chave
+				</label>
+				<div class="input-div">
+					<input type="text" name="keywords" value="{{admin_feed.keywords}}" class="form-control" required="required" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-media_type">
+				<label for="media_type">
+					Tipo de arquivo
+				</label>
+				<div class="input-div">
+					<input type="text" name="media_type" value="{{admin_feed.media_type}}" class="form-control" required="required" data-type="string">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-is_teaser">
+				<label for="is_teaser">
+					É teaser
+				</label>
+				<div class="input-div">
+					<div class="radio">
+						<label>
+							<input type="radio" value="true" name="is_teaser" data-type="bool" {{itemIsChecked admin_feed.is_teaser "true"}}>
+							Sim
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input type="radio" value="false" name="is_teaser" data-type="bool" {{itemIsChecked admin_feed.is_teaser "false"}}>
+							Não
+						</label>
+					</div>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-playlists_id">
+				<label for="playlists_id">
+					IDs das playlists
+				</label>
+				<div class="input-div">
+					<input type="text" name="playlists_id" value="{{admin_feed.playlists_id}}" class="form-control" required="required" data-type="array">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-priority">
+				<label for="priority">
+					Prioridade
+				</label>
+				<div class="input-div">
+					<input type="text" name="priority" value="{{admin_feed.priority}}" class="form-control" required="required" data-type="integer" data-min="0">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-is_active">
+				<label for="is_active">
+					Ativo
+				</label>
+				<div class="input-div">
+					<div class="radio">
+						<label>
+							<input type="radio" value="true" name="is_active" data-type="bool" {{itemIsChecked admin_feed.is_active "true"}}>
+							Sim
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input type="radio" value="false" name="is_active" data-type="bool" {{itemIsChecked admin_feed.is_active "false"}}>
+							Não
+						</label>
+					</div>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="submit-div">
+					<button id="form-submit-button" class="btn btn-success" type="submit">
+						<span class="fa fa-check">
+						</span>
+						Save
+					</button>
+					<a href="#" id="form-cancel-button" class="btn btn-default">
+						Cancel
+					</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</template>
+

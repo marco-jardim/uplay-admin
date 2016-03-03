@@ -1,0 +1,99 @@
+<template name="Publications">
+	<div class="page-container container" id="content">
+		<div class="row" id="title_row">
+			<div class="col-md-12">
+				<h2 id="page_title" class="pull-left">
+					Publicações
+				</h2>
+				<div id="page_menu" class="pull-right">
+				</div>
+			</div>
+		</div>
+		{{> PublicationsView}}
+	</div>
+</template>
+
+<template name="PublicationsView">
+	<div id="publications-view" class="">
+		<form id="dataview-controls" class="form-inline">
+			<div id="dataview-controls-search">
+				{{#if isNotEmpty}}
+				<div id="dataview-controls-search-group" class="form-group">
+					<label class="sr-only" for="search">
+						Search
+					</label>
+					<input type="text" class="form-control" id="dataview-search-input" placeholder="Search" name="search" value="{{searchString}}" autofocus="autofocus">
+					<button type="button" id="dataview-search-button" class="btn btn-primary">
+						<span class="fa fa-search">
+						</span>
+					</button>
+				</div>
+				{{/if}}
+			</div>
+		</form>
+		{{#if isNotEmpty}}	
+			{{#if isNotFound}}
+		<div class="alert alert-warning">
+			"{{searchString}}" not found.
+		</div>
+		{{else}}
+		<div id="dataview-data">
+			{{#if viewAsTable}} {{> PublicationsViewTable}} {{/if}}
+		</div>
+		{{/if}}	
+		{{else}}
+		<div class="alert alert-info">
+			Ainda não há publicações salvas.
+		</div>
+		{{/if}}
+	</div>
+</template>
+
+<template name="PublicationsViewTable">
+	<table id="dataview-table" class="table table-striped">
+		<thead id="dataview-table-header">
+			<tr id="dataview-table-header-row">
+				<th class="th-sortable" data-sort="title">
+					Título
+				</th>
+				<th class="th-sortable" data-sort="created_time">
+					Data de criação
+				</th>
+				<th class="th-sortable" data-sort="publish_start">
+					Início da publicação
+				</th>
+				<th class="th-sortable" data-sort="publish_end">
+					Fim da publicação
+				</th>
+				<th>
+					&nbsp;
+				</th>
+			</tr>
+		</thead>
+		<tbody id="dataview-table-items">
+			{{#each tableItems}} {{> PublicationsViewTableItems}} {{/each}}
+		</tbody>
+	</table>
+</template>
+
+<template name="PublicationsViewTableItems">
+	<tr id="dataview-table-items-row">
+		<td>
+			{{title}}
+		</td>
+		<td>
+			{{created_time}}
+		</td>
+		<td>
+			{{publish_start}}
+		</td>
+		<td>
+			{{publish_end}}
+		</td>
+		<td class="td-icon">
+			<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">
+			</span>
+		</td>
+	</tr>
+</template>
+

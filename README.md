@@ -1,4 +1,4 @@
-# riobus-admin
+# uplay-admin
 Data administration panel written in Meteor using Meteor Kitchen
 
 ## Installation guide
@@ -10,11 +10,11 @@ Data administration panel written in Meteor using Meteor Kitchen
 > curl http://www.meteorkitchen.com/install | /bin/sh
 
 * Download the source
-> git clone https://github.com/fmsouza/riobus-admin.git
+> git clone https://github.com/fmsouza/uplay-admin.git
 
 * Enter in the directory and build the environment
-> cd riobus-admin
+> cd uplay-admin
 > meteor-kitchen admin.json select/a/path
 
 * Enter the build directory and run the application
->   MONGO_URL=mongodb://localhost:27017/riobus meteor
+>   MONGO_URL=mongodb://localhost:27017/v1 meteor

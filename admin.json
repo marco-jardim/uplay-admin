@@ -155,10 +155,10 @@
 										{ "name": "source", "title": "Fonte", "type": "string", "required": true },
 										{ "name": "keywords", "title": "Palavras-chave", "type": "string", "required": true },
 										{ "name": "media_type", "title": "Tipo de arquivo", "type": "string", "required": true },
-										{ "name": "is_teaser", "title": "É teaser", "type": "bool", "required": true },
+										{ "name": "is_teaser", "title": "É teaser", "type": "bool", "input": "radio", "input_items": [{"value": true, "title": "Sim"}, {"value": false, "title": "Não"}], "required": true },
                                         { "name": "playlists_id", "title": "IDs das playlists", "type": "array", "array_item_type": "string", "required": true },
 										{ "name": "priority", "title": "Prioridade", "type": "integer", "min": 0, "default": 999, "required": true },
-										{ "name": "is_active", "title": "Ativo", "type": "bool", "required": true }
+										{ "name": "is_active", "title": "Ativo", "type": "bool", "input": "radio", "input_items": [{"value": true, "title": "Sim"}, {"value": false, "title": "Não"}], "required": true }
 									]
 								}
 							]
@@ -220,7 +220,7 @@
                                         { "name": "thumbnail", "title": "Minatura", "type": "string", "required": true },
                                         { "name": "videos_id", "title": "Vídeos", "type": "array", "array_item_type": "string", "required": true },
 										{ "name": "keywords", "title": "Palavras-chave", "type": "string", "required": true },
-										{ "name": "is_active", "title": "Ativo", "type": "bool", "required": true }
+										{ "name": "is_active", "title": "Ativo", "type": "bool", "input": "radio", "input_items": [{"value": true, "title": "Sim"}, {"value": false, "title": "Não"}], "required": true }
 									]
 								}
 							]

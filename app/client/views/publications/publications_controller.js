@@ -34,12 +34,12 @@ this.PublicationsController = RouteController.extend({
         var findQuery = {};
         var qString = this.params.queryString;
         if(qString) {
-            findQuery.title = { $regex: ".*"+qString+".*" };
+            findQuery.title = { $regex: ".*"+qString+".*/i" };
         }
         skip = (this.params.page)? this.params.page * limit : 0;
 		return {
 			params: this.params || {},
-			admin_feeds: Feeds.find(findQuery, { sort: {created_time:-1}, fields: {item_id:1,title:1,created_time:1,publish_start:1,publish_end:1}, skip: skip, limit: limit })
+			admin_feeds: Feeds.find(findQuery, { sort: {created_time:-1}, fields: {item_id:1,source:1,title:1,created_time:1,description:1, priority:1,is_active:1}, skip: skip, limit: limit })
 		};
 		/*DATA_FUNCTION*/
 	},

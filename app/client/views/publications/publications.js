@@ -31,7 +31,7 @@ var PublicationsViewItems2 = function(cursor) {
 	} else {
 		searchString = searchString.replace(".", "\\.");
 		var regEx = new RegExp(searchString, "i");
-		var searchFields = ["title", "created_time", "publish_start", "publish_end"];
+		var searchFields = ["source", "description", "title", "created_time", "publish_start", "publish_end"];
 		filtered = _.filter(raw, function(item) {
 			var match = false;
 			_.each(searchFields, function(field) {

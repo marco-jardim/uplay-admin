@@ -53,17 +53,23 @@
 	<table id="dataview-table" class="table table-striped">
 		<thead id="dataview-table-header">
 			<tr id="dataview-table-header-row">
+				<th class="th-sortable" data-sort="source">
+					Fonte
+				</th>
 				<th class="th-sortable" data-sort="title">
 					Título
+				</th>
+				<th class="th-sortable" data-sort="description">
+					Descrição
 				</th>
 				<th class="th-sortable" data-sort="created_time">
 					Data de criação
 				</th>
-				<th class="th-sortable" data-sort="publish_start">
-					Início da publicação
+				<th class="th-sortable" data-sort="priority">
+					Prioridade
 				</th>
-				<th class="th-sortable" data-sort="publish_end">
-					Fim da publicação
+				<th class="th-sortable" data-sort="is_active">
+					Ativo
 				</th>
 				<th>
 					&nbsp;
@@ -80,16 +86,22 @@
 <template name="PublicationsViewTableItems">
 	<tr id="dataview-table-items-row">
 		<td>
+			{{source}}
+		</td>
+		<td>
 			{{title}}
+		</td>
+		<td>
+			{{description}}
 		</td>
 		<td>
 			{{created_time}}
 		</td>
 		<td>
-			{{publish_start}}
+			{{priority}}
 		</td>
 		<td>
-			{{publish_end}}
+			{{is_active}}
 		</td>
 		<td class="td-icon">
 			<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">

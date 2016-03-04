@@ -72,6 +72,7 @@
 		</thead>
 		<tbody id="dataview-table-items">
 			{{#each tableItems}} {{> PublicationsViewTableItems}} {{/each}}
+            {{> PublicationsViewTableFooter}}
 		</tbody>
 	</table>
 </template>
@@ -94,6 +95,16 @@
 			<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">
 			</span>
 		</td>
+	</tr>
+</template>
+
+<template name="PublicationsViewTableFooter">
+	<tr id="dataview-table-footer">
+		<td id="ctrlBack">&lt;&lt; Anterior</td>
+		<td></td>
+		<td></td>
+		<td id="ctrlFwd" style="text-align:right;">Próxima &gt;&gt;</td>
+		<td></td>
 	</tr>
 </template>
 

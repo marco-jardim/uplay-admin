@@ -209,6 +209,7 @@ Router.map(function () {
 	this.route("reset_password", {path: "/reset_password/:resetPasswordToken", controller: "ResetPasswordController"});
 	this.route("home_private", {path: "/home_private", controller: "HomePrivateController"});
 	this.route("publications", {path: "/publications", controller: "PublicationsController"});
+	this.route("publications_page", {path: "/publications/:page", controller: "PublicationsController"});
 	this.route("feeds", {path: "/feeds", controller: "FeedsController"});
 	this.route("feeds.edit", {path: "/feeds/edit/:item_id", controller: "FeedsEditController"});
 	this.route("playlists", {path: "/playlists", controller: "PlaylistsController"});

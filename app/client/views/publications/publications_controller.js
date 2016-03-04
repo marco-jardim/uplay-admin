@@ -1,3 +1,5 @@
+var limit = 10, skip = 0;
+
 this.PublicationsController = RouteController.extend({
 	template: "Publications",
 	
@@ -16,10 +18,10 @@ this.PublicationsController = RouteController.extend({
 	},
 
 	isReady: function() {
-		
+        skip = (this.params.page)? this.params.page * limit : 0;
 
 		var subs = [
-			Meteor.subscribe("admin_feeds")
+			Meteor.subscribe("admin_feeds", skip, limit)
 		];
 		var ready = true;
 		_.each(subs, function(sub) {
@@ -30,11 +32,9 @@ this.PublicationsController = RouteController.extend({
 	},
 
 	data: function() {
-		
-
 		return {
 			params: this.params || {},
-			admin_feeds: Feeds.find({}, {sort:{created_time:-1},fields:{item_id:1,title:1,created_time:1,publish_start:1,publish_end:1}})
+			admin_feeds: Feeds.find({}, { sort: {created_time:-1}, fields: {item_id:1,title:1,created_time:1,publish_start:1,publish_end:1} })
 		};
 		/*DATA_FUNCTION*/
 	},

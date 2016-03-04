@@ -153,8 +153,18 @@ Template.PublicationsView.events({
 	"click #dataview-export-json": function(e, t) {
 		e.preventDefault();
 		PublicationsViewExport(this.admin_feeds, "json");
-	}
-
+	},
+    
+    "click #ctrlBack": function(e, t) {
+        if(this.params.page > 0) {
+            Router.go("publications_page", {page: --this.params.page});
+        }
+    },
+    
+    "click #ctrlFwd": function(e, t) {
+        if(!this.params.page) this.params.page = 0;
+        Router.go("publications_page", {page: ++this.params.page});
+    }
 	
 });
 

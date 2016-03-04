@@ -34,7 +34,15 @@ this.PublicationsController = RouteController.extend({
         var findQuery = {};
         var qString = this.params.queryString;
         if(qString) {
-            findQuery.title = { $regex: ".*"+qString+".*/i" };
+            //findQuery.title = { $regex: ".*"+qString+".*/i" };
+            findQuery["$or"] = [
+                { title: { $regex: ".*"+qString+".*", $options: "i" } },
+                { source: { $regex: ".*"+qString+".*/i" } },
+                { description: { $regex: ".*"+qString+".*", $options: "i" } },
+                { created_time: { $regex: ".*"+qString+".*", $options: "i" } },
+                { item_id: { $regex: ".*"+qString+".*", $options: "i" } },
+                { priority: { $regex: ".*"+qString+".*", $options: "i" } }
+            ];
         }
         skip = (this.params.page)? this.params.page * limit : 0;
 		return {

@@ -12,7 +12,7 @@ Template.Publications.helpers({
 	
 });
 
-var PublicationsViewItems2 = function(cursor) {
+var PublicationsViewItems = function(cursor) {
 	if(!cursor) {
 		return [];
 	}
@@ -55,15 +55,6 @@ var PublicationsViewItems2 = function(cursor) {
 		}
 	}
 	return filtered;
-};
-
-var PublicationsViewItems = function(cursor) {
-    var searchString = pageSession.get("PublicationsViewSearchString");
-    if(searchString && searchString!=="") {
-        searchString = searchString.replace(".", "\\.");
-        Router.go("publications_page_query", {page: 0, queryString: searchString});
-        return cursor.fetch();
-    } else return PublicationsViewItems2(cursor);
 };
 
 var PublicationsViewExport = function(cursor, fileType) {
@@ -112,7 +103,12 @@ Template.PublicationsView.events({
 				var searchInput = form.find("#dataview-search-input");
 				if(searchInput) {
 					var searchString = searchInput.val();
-					pageSession.set("PublicationsViewSearchString", searchString);
+					//pageSession.set("PublicationsViewSearchString", searchString);
+                    searchString = searchString.replace(".", "\\.");
+                    if(searchString!=="")
+                        Router.go("publications_page_query", {page: 0, queryString: searchString});
+                    else
+                        Router.go("publications_page", {page: 0});
 				}
 
 			}

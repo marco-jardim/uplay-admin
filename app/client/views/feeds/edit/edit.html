@@ -32,7 +32,7 @@
 					Usuário
 				</label>
 				<div class="input-div">
-					<input type="text" name="username" value="{{admin_feed.username}}" class="form-control" autofocus="autofocus" required="required" data-type="string">
+					<input type="text" name="username" value="{{admin_feed.username}}" class="form-control" autofocus="autofocus" data-type="string">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -44,7 +44,7 @@
 					Screen Name
 				</label>
 				<div class="input-div">
-					<input type="text" name="screenname" value="{{admin_feed.screenname}}" class="form-control" required="required" data-type="string">
+					<input type="text" name="screenname" value="{{admin_feed.screenname}}" class="form-control" data-type="string">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -68,7 +68,7 @@
 					Título
 				</label>
 				<div class="input-div">
-					<input type="text" name="title" value="{{admin_feed.title}}" class="form-control" required="required" data-type="string">
+					<input type="text" name="title" value="{{admin_feed.title}}" class="form-control" data-type="string">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -81,7 +81,7 @@
 				</label>
 				<div class="input-div">
 					<div class="input-group date">
-						<input type="text" name="created_time" value="{{formatDate admin_feed.created_time ''}}" class="form-control" required="required" data-type="date">
+						<input type="text" name="created_time" value="{{formatDate admin_feed.created_time ''}}" class="form-control" data-type="date">
 						<span class="input-group-addon">
 							<i class="fa fa-calendar">
 							</i>
@@ -99,7 +99,7 @@
 				</label>
 				<div class="input-div">
 					<div class="input-group date">
-						<input type="text" name="publish_start" value="{{formatDate admin_feed.publish_start ''}}" class="form-control" required="required" data-type="date">
+						<input type="text" name="publish_start" value="{{formatDate admin_feed.publish_start ''}}" class="form-control" data-type="date">
 						<span class="input-group-addon">
 							<i class="fa fa-calendar">
 							</i>
@@ -117,7 +117,7 @@
 				</label>
 				<div class="input-div">
 					<div class="input-group date">
-						<input type="text" name="publish_end" value="{{formatDate admin_feed.publish_end ''}}" class="form-control" required="required" data-type="date">
+						<input type="text" name="publish_end" value="{{formatDate admin_feed.publish_end ''}}" class="form-control" data-type="date">
 						<span class="input-group-addon">
 							<i class="fa fa-calendar">
 							</i>
@@ -134,7 +134,7 @@
 					URL curta
 				</label>
 				<div class="input-div">
-					<input type="text" name="tiny_url" value="{{admin_feed.tiny_url}}" class="form-control" required="required" data-type="string">
+					<input type="text" name="tiny_url" value="{{admin_feed.tiny_url}}" class="form-control" data-type="string">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -143,10 +143,10 @@
 			</div>
 			<div class="form-group  field-deion">
 				<label for="deion">
-					Deion
+					Descrição
 				</label>
 				<div class="input-div">
-					<input type="text" name="deion" value="{{admin_feed.deion}}" class="form-control" required="required" data-type="string">
+					<input type="text" name="description" value="{{admin_feed.description}}" class="form-control" data-type="string">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -158,7 +158,7 @@
 					Tags
 				</label>
 				<div class="input-div">
-					<input type="text" name="tags" value="{{admin_feed.tags}}" class="form-control" required="required" data-type="array">
+					<input type="text" name="tags" value="{{admin_feed.tags}}" class="form-control" data-type="array">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -170,7 +170,7 @@
 					Proprietário
 				</label>
 				<div class="input-div">
-					<input type="text" name="owner" value="{{admin_feed.owner}}" class="form-control" required="required" data-type="string">
+					<input type="text" name="owner" value="{{admin_feed.owner}}" class="form-control" data-type="string">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -182,7 +182,7 @@
 					Minatura
 				</label>
 				<div class="input-div">
-					<input type="text" name="thumbnail" value="{{admin_feed.thumbnail}}" class="form-control" required="required" data-type="string">
+					<input type="text" name="thumbnail" value="{{admin_feed.thumbnail}}" class="form-control" data-type="string">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -194,7 +194,7 @@
 					Fonte
 				</label>
 				<div class="input-div">
-					<input type="text" name="source" value="{{admin_feed.source}}" class="form-control" required="required" data-type="string">
+					<input type="text" name="source" value="{{admin_feed.source}}" class="form-control" data-type="string">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -206,7 +206,7 @@
 					Palavras-chave
 				</label>
 				<div class="input-div">
-					<input type="text" name="keywords" value="{{admin_feed.keywords}}" class="form-control" required="required" data-type="string">
+					<input type="text" name="keywords" value="{{admin_feed.keywords}}" class="form-control" data-type="string">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -218,7 +218,7 @@
 					Tipo de arquivo
 				</label>
 				<div class="input-div">
-					<input type="text" name="media_type" value="{{admin_feed.media_type}}" class="form-control" required="required" data-type="string">
+					<input type="text" name="media_type" value="{{admin_feed.media_type}}" class="form-control" data-type="string">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -253,7 +253,7 @@
 					IDs das playlists
 				</label>
 				<div class="input-div">
-					<input type="text" name="playlists_id" value="{{admin_feed.playlists_id}}" class="form-control" required="required" data-type="array">
+					<input type="text" name="playlists_id" value="{{admin_feed.playlists_id}}" class="form-control" data-type="array">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">

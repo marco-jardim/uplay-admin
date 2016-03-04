@@ -132,7 +132,7 @@ Template.PlaylistsView.events({
 
 	"click #dataview-insert-button": function(e, t) {
 		e.preventDefault();
-		/**/
+		Router.go("playlist.insert", {});
 	},
 
 	"click #dataview-export-default": function(e, t) {

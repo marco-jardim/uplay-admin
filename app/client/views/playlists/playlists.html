@@ -16,11 +16,18 @@
 <template name="PlaylistsView">
 	<div id="playlists-view" class="">
 		<form id="dataview-controls" class="form-inline">
+			<div id="dataview-controls-insert" class="form-group {{insertButtonClass}}">
+				<button type="submit" id="dataview-insert-button" class="btn btn-success">
+					<span class="fa fa-plus">
+					</span>
+					Nova
+				</button>
+			</div>
 			<div id="dataview-controls-search">
 				{{#if isNotEmpty}}
 				<div id="dataview-controls-search-group" class="form-group">
 					<label class="sr-only" for="search">
-						Search
+						Buscar
 					</label>
 					<input type="text" class="form-control" id="dataview-search-input" placeholder="Search" name="search" value="{{searchString}}" autofocus="autofocus">
 					<button type="button" id="dataview-search-button" class="btn btn-primary">
@@ -68,6 +75,9 @@
 				<th>
 					&nbsp;
 				</th>
+				<th>
+					&nbsp;
+				</th>
 			</tr>
 		</thead>
 		<tbody id="dataview-table-items">
@@ -92,6 +102,10 @@
 		</td>
 		<td class="td-icon">
 			<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">
+			</span>
+		</td>
+		<td class="td-icon">
+			<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete">
 			</span>
 		</td>
 	</tr>

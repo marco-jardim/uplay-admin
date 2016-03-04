@@ -6,3 +6,7 @@ Meteor.publish("admin_playlist", function(playlist_id) {
 	return Playlists.find({playlist_id:playlist_id}, {});
 });
 
+Meteor.publish("playlists_null", function() {
+	return Playlists.find({_id:null}, {});
+});
+

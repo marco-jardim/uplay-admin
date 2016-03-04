@@ -63,6 +63,12 @@
 				"find_one": true
 			},
 			{
+				"name": "playlists_null",
+				"collection": "playlists",
+				"filter": { "_id": null },
+				"find_one": true
+			},
+			{
 				"name": "admin_users",
 				"collection": "users",
 				"filter": {}
@@ -232,6 +238,7 @@
 								{ "name": "publish_start", "title": "Início da publicação" },
 								{ "name": "publish_end", "title": "Fim da publicação" }
 							],
+                            "insert_route": "playlist.insert",
 							"edit_route": "playlist.edit",
 							"edit_route_params": [
 								{ "name": "playlist_id", "value": "this.playlist_id" }
@@ -269,6 +276,37 @@
                                         { "name": "thumbnail", "title": "Minatura", "type": "string", "required": true },
                                         { "name": "videos_id", "title": "Vídeos", "type": "array", "array_item_type": "string", "required": true },
 										{ "name": "keywords", "title": "Palavras-chave", "type": "string", "required": true },
+										{ "name": "is_active", "title": "Ativo", "type": "bool", "input": "radio", "input_items": [{"value": true, "title": "Sim"}, {"value": false, "title": "Não"}], "required": true }
+									]
+								}
+							]
+						},
+						{
+							"name": "insert",
+							"route_params": [],
+							"components": [
+								{
+									"name": "insert_form",
+									"type": "form",
+									"mode": "insert",
+									"title": "Criar Lista de Reprodução",
+									"submit_route": "playlists",
+									"cancel_route": "playlists",
+									"query_name": "playlists_null",
+									"query_params": [],
+									"fields": [
+                                        { "name": "playlist_id", "title": "ID da Playlist", "type": "string", "required": true },
+                                        { "name": "created_time", "title": "Data de criação", "type": "date", "input": "datepicker" },
+                                        { "name": "publish_start", "title": "Início da publicação", "type": "date", "input": "datepicker" },
+                                        { "name": "publish_end", "title": "Fim da publicação", "type": "date", "input": "datepicker" },
+                                        { "name": "description", "title": "Descrição", "type": "string" },
+                                        { "name": "title", "title": "Título", "type": "string" },
+                                        { "name": "owner", "title": "Proprietário", "type": "string" },
+                                        { "name": "username", "title": "Usuário", "type": "string" },
+                                        { "name": "screenname", "title": "Screen Name", "type": "string" },
+                                        { "name": "thumbnail", "title": "Minatura", "type": "string" },
+                                        { "name": "videos_id", "title": "Vídeos", "type": "array", "array_item_type": "string", "required": true },
+										{ "name": "keywords", "title": "Palavras-chave", "type": "string" },
 										{ "name": "is_active", "title": "Ativo", "type": "bool", "input": "radio", "input_items": [{"value": true, "title": "Sim"}, {"value": false, "title": "Não"}], "required": true }
 									]
 								}

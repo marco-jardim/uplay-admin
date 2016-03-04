@@ -23,6 +23,7 @@ var privateRoutes = [
 	"playlists",
 	"playlist",
 	"playlist.edit",
+	"playlist.insert",
 	"admin",
 	"admin.users",
 	"admin.users.details",
@@ -47,6 +48,7 @@ var roleMap = [
 	{ route: "playlists",	roles: ["admin"] },
 	{ route: "playlist",	roles: ["admin"] },
 	{ route: "playlist.edit",	roles: ["admin"] },
+	{ route: "playlist.insert",	roles: ["admin"] },
 	{ route: "admin",	roles: ["admin"] },
 	{ route: "admin.users",	roles: ["admin"] },
 	{ route: "admin.users.details",	roles: ["admin"] },
@@ -219,6 +221,7 @@ Router.map(function () {
 	this.route("playlists", {path: "/playlists", controller: "PlaylistsController"});
 	this.route("playlist", {path: "/playlist", controller: "PlaylistController"});
 	this.route("playlist.edit", {path: "/playlist/edit/:item_id", controller: "PlaylistEditController"});
+	this.route("playlist.insert", {path: "/playlist/insert", controller: "PlaylistInsertController"});
 	this.route("admin", {path: "/admin", controller: "AdminController"});
 	this.route("admin.users", {path: "/admin/users", controller: "AdminUsersController"});
 	this.route("admin.users.details", {path: "/admin/users/details/:userId", controller: "AdminUsersDetailsController"});

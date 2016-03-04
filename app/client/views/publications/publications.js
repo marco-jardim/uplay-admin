@@ -31,7 +31,7 @@ var PublicationsViewItems = function(cursor) {
 	} else {
 		searchString = searchString.replace(".", "\\.");
 		var regEx = new RegExp(searchString, "i");
-		var searchFields = ["source", "description", "title", "created_time", "publish_start", "publish_end"];
+		var searchFields = ["source", "title", "description", "created_time", "priority", "is_active"];
 		filtered = _.filter(raw, function(item) {
 			var match = false;
 			_.each(searchFields, function(field) {
@@ -135,7 +135,7 @@ Template.PublicationsView.events({
 
 	"click #dataview-insert-button": function(e, t) {
 		e.preventDefault();
-		/**/
+		Router.go("feeds.insert", {});
 	},
 
 	"click #dataview-export-default": function(e, t) {

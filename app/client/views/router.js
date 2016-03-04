@@ -19,6 +19,7 @@ var privateRoutes = [
 	"publications",
 	"feeds",
 	"feeds.edit",
+	"feeds.insert",
 	"playlists",
 	"playlist",
 	"playlist.edit",
@@ -42,6 +43,7 @@ var roleMap = [
 	{ route: "publications",	roles: ["admin"] },
 	{ route: "feeds",	roles: ["admin"] },
 	{ route: "feeds.edit",	roles: ["admin"] },
+	{ route: "feeds.insert",	roles: ["admin"] },
 	{ route: "playlists",	roles: ["admin"] },
 	{ route: "playlist",	roles: ["admin"] },
 	{ route: "playlist.edit",	roles: ["admin"] },
@@ -213,6 +215,7 @@ Router.map(function () {
 	this.route("publications_page_query", {path: "/publications/:page/:queryString", controller: "PublicationsController"});
 	this.route("feeds", {path: "/feeds", controller: "FeedsController"});
 	this.route("feeds.edit", {path: "/feeds/edit/:item_id", controller: "FeedsEditController"});
+	this.route("feeds.insert", {path: "/feeds/insert", controller: "FeedsInsertController"});
 	this.route("playlists", {path: "/playlists", controller: "PlaylistsController"});
 	this.route("playlist", {path: "/playlist", controller: "PlaylistController"});
 	this.route("playlist.edit", {path: "/playlist/edit/:item_id", controller: "PlaylistEditController"});

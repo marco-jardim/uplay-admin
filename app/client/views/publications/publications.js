@@ -12,7 +12,7 @@ Template.Publications.helpers({
 	
 });
 
-var PublicationsViewItems = function(cursor) {
+var PublicationsViewItems2 = function(cursor) {
 	if(!cursor) {
 		return [];
 	}
@@ -49,14 +49,21 @@ var PublicationsViewItems = function(cursor) {
 	// sort
 	if(sortBy) {
 		filtered = _.sortBy(filtered, sortBy);
-
 		// descending?
 		if(!sortAscending) {
 			filtered = filtered.reverse();
 		}
 	}
-
 	return filtered;
+};
+
+var PublicationsViewItems = function(cursor) {
+    var searchString = pageSession.get("PublicationsViewSearchString");
+    if(searchString && searchString!=="") {
+        searchString = searchString.replace(".", "\\.");
+        Router.go("publications_page_query", {page: 0, queryString: searchString});
+        return cursor.fetch();
+    } else return PublicationsViewItems2(cursor);
 };
 
 var PublicationsViewExport = function(cursor, fileType) {
@@ -156,14 +163,17 @@ Template.PublicationsView.events({
 	},
     
     "click #ctrlBack": function(e, t) {
-        if(this.params.page > 0) {
+        if(this.params.page > 0 && !this.params.queryString) {
             Router.go("publications_page", {page: --this.params.page});
+        } else if(this.params.page > 0 && !this.params.queryString) {
+            Router.go("publications_page_query", {page: --this.params.page, queryString: this.params.queryString});
         }
     },
     
     "click #ctrlFwd": function(e, t) {
         if(!this.params.page) this.params.page = 0;
-        Router.go("publications_page", {page: ++this.params.page});
+        if(!this.params.queryString) Router.go("publications_page", {page: ++this.params.page});
+        else Router.go("publications_page_query", {page: ++this.params.page, queryString: this.params.queryString});
     }
 	
 });

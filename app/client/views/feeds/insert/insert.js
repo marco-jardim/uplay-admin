@@ -85,7 +85,18 @@ Template.FeedsInsertInsertForm.events({
 
 			},
 			function(values) {
-				
+                var i;
+                if(values.keywords instanceof Array) values.keywords = values.keywords[0].replace(' , ', ',').replace(' ,', ',').replace(', ', ',').split(',');
+				else values.keywords = values.keywords.replace(' , ', ',').replace(' ,', ',').replace(', ', ',').split(',');
+                for(i=0; i<values.keywords.length; i++) values.keywords[i] = values.keywords[i].trim();
+                
+                if(values.playlists_id instanceof Array) values.playlists_id = values.playlists_id[0].replace(' , ', ',').replace(' ,', ',').replace(', ', ',').split(',');
+				else values.playlists_id = values.playlists_id.replace(' , ', ',').replace(' ,', ',').replace(', ', ',').split(',');
+                for(i=0; i<values.playlists_id.length; i++) values.playlists_id[i] = values.playlists_id[i].trim();
+                
+                if(values.tags instanceof Array) values.tags = values.tags[0].replace(' , ', ',').replace(' ,', ',').replace(', ', ',').split(',');
+				else values.tags = values.tags.replace(' , ', ',').replace(' ,', ',').replace(', ', ',').split(',');
+                for(i=0; i<values.tags.length; i++) values.tags[i] = values.tags[i].trim();
 
 				newId = Feeds.insert(values, function(e) { if(e) errorAction(e); else submitAction(); });
 			}

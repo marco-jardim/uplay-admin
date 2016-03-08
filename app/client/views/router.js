@@ -220,7 +220,7 @@ Router.map(function () {
 	this.route("feeds.insert", {path: "/feeds/insert", controller: "FeedsInsertController"});
 	this.route("playlists", {path: "/playlists", controller: "PlaylistsController"});
 	this.route("playlist", {path: "/playlist", controller: "PlaylistController"});
-	this.route("playlist.edit", {path: "/playlist/edit/:item_id", controller: "PlaylistEditController"});
+	this.route("playlist.edit", {path: "/playlist/edit/:playlist_id", controller: "PlaylistEditController"});
 	this.route("playlist.insert", {path: "/playlist/insert", controller: "PlaylistInsertController"});
 	this.route("admin", {path: "/admin", controller: "AdminController"});
 	this.route("admin.users", {path: "/admin/users", controller: "AdminUsersController"});

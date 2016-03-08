@@ -85,8 +85,15 @@ Template.PlaylistInsertInsertForm.events({
 
 			},
 			function(values) {
+                var i;
+                if(values.keywords instanceof Array) values.keywords = values.keywords[0].replace(' , ', ',').replace(' ,', ',').replace(', ', ',').split(',');
+				else values.keywords = values.keywords.replace(' , ', ',').replace(' ,', ',').replace(', ', ',').split(',');
+                for(i=0; i<values.keywords.length; i++) values.keywords[i] = values.keywords[i].trim();
+                
+                if(values.videos_id instanceof Array) values.videos_id = values.videos_id[0].replace(' , ', ',').replace(' ,', ',').replace(', ', ',').split(',');
+				else values.videos_id = values.videos_id.replace(' , ', ',').replace(' ,', ',').replace(', ', ',').split(',');
+                for(i=0; i<values.videos_id.length; i++) values.videos_id[i] = values.videos_id[i].trim();
 				
-
 				newId = Playlists.insert(values, function(e) { if(e) errorAction(e); else submitAction(); });
 			}
 		);

@@ -21,8 +21,11 @@ var PublicationsViewItems = function(cursor) {
 	var sortBy = pageSession.get("PublicationsViewSortBy");
 	var sortAscending = pageSession.get("PublicationsViewSortAscending");
 	if(typeof(sortAscending) == "undefined") sortAscending = true;
-
+    var getOnlyActive = pageSession.get("PublicationsViewOnlyActive");;
 	var raw = cursor.fetch();
+    if(getOnlyActive) raw = raw.filter(function(doc){
+        return doc.is_active===true;
+    });
 
 	// filter
 	var filtered = [];
@@ -136,6 +139,13 @@ Template.PublicationsView.events({
 	"click #dataview-insert-button": function(e, t) {
 		e.preventDefault();
 		Router.go("feeds.insert", {});
+	},
+
+	"click #dataview-active-button": function(e, t) {
+		e.preventDefault();
+        let onlyActive = pageSession.get("PublicationsViewOnlyActive");
+        pageSession.set("PublicationsViewOnlyActive", !onlyActive);
+        Router.go("publications_page", {});
 	},
 
 	"click #dataview-export-default": function(e, t) {

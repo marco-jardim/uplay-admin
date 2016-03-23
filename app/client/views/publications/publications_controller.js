@@ -32,6 +32,8 @@ this.PublicationsController = RouteController.extend({
 	data: function() {
         var findQuery = {};
         var qString = this.params.queryString;
+        var onlyActive = this.params.onlyActive;
+        if(onlyActive) findQuery["is_active"] = true;
         if(qString) {
             //findQuery.title = { $regex: ".*"+qString+".*/i" };
             findQuery["$or"] = [

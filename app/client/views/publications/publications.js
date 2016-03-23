@@ -21,11 +21,7 @@ var PublicationsViewItems = function(cursor) {
 	var sortBy = pageSession.get("PublicationsViewSortBy");
 	var sortAscending = pageSession.get("PublicationsViewSortAscending");
 	if(typeof(sortAscending) == "undefined") sortAscending = true;
-    var getOnlyActive = pageSession.get("PublicationsViewOnlyActive");;
 	var raw = cursor.fetch();
-    if(getOnlyActive) raw = raw.filter(function(doc){
-        return doc.is_active===true;
-    });
 
 	// filter
 	var filtered = [];
@@ -108,10 +104,18 @@ Template.PublicationsView.events({
 					var searchString = searchInput.val();
 					//pageSession.set("PublicationsViewSearchString", searchString);
                     searchString = searchString.replace(".", "\\.");
-                    if(searchString!=="")
-                        Router.go("publications_page_query", {page: 0, queryString: searchString});
-                    else
-                        Router.go("publications_page", {page: 0});
+                    if(searchString!=="") {
+                        if(!pageSession.get("PublicationsViewOnlyActive"))
+                            Router.go("publications_page_query", {page: 0, queryString: searchString});
+                        else
+                            Router.go("publications_page_query_active", {page: 0, onlyActive: true, queryString: searchString});
+                    }
+                    else {
+                        if(!pageSession.get("PublicationsViewOnlyActive"))
+                            Router.go("publications_page", {page: 0});
+                        else
+                            Router.go("publications_page_active", {page: 0, onlyActive: true});
+                    }
 				}
 
 			}
@@ -144,8 +148,14 @@ Template.PublicationsView.events({
 	"click #dataview-active-button": function(e, t) {
 		e.preventDefault();
         let onlyActive = pageSession.get("PublicationsViewOnlyActive");
-        pageSession.set("PublicationsViewOnlyActive", !onlyActive);
-        Router.go("publications_page", {});
+        
+        if(!onlyActive) {
+            pageSession.set("PublicationsViewOnlyActive", true);
+            Router.go("publications_page_active", { page: 0, onlyActive: true});
+        } else {
+            pageSession.set("PublicationsViewOnlyActive", undefined);
+            Router.go("publications", {});
+        }
 	},
 
 	"click #dataview-export-default": function(e, t) {
